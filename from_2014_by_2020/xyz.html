@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/razoredge.css" type="text/css" />
+        <script type="text/javascript" src="js/disc_system.js"></script>
+        <script type="text/javascript" src="js/magazine.js"></script>
+        <script type="text/javascript" src="js/disc_2020.js"></script>
+        <script type="text/javascript" src="js/historian.js"></script>
+        <script type="text/javascript" src="js/sail.js"></script>
+        <script type="text/javascript" src="js/metal_tape.js"></script>
+        <script type="text/javascript" src="js/cube.js"></script>
+	</head>
+	<body>
+        text
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div id="root"></div>
+        <script>
+            let rootDiv = document.getElementById("root");
+            let discSystem;
+            let disc, sail, magazine;
+            const unit = 30;
+            const unit4Disc = 160;
+            window.onload = (e) => {
+                discSystem = new DiscSystem({rootDiv: rootDiv});
+
+                let show_1 = function() {
+                    sail = new Sail({rootDiv: discSystem.getBottom(), captionForFront: ``, height: "150px", width: "160px"});
+                    sail.jointDiv.style.transform += "translateZ(1px)";
+
+                    magazine = new Magazine({
+                      rootDiv: discSystem.getBottom(),
+                      innerHTMLForBottomInner: `<font color='white'>漲</font>`,
+                      duration: (30 * 16),
+                    });
+//                    magazine.registerDisc({id: "子", top: -15, left: 0, captionForBottom: "", captionForFrontInner: "exothermicAction()"});
+                    disc = new Disc({
+                      rootDiv: magazine.getBottom(),
+                      innerHTMLForFrontInner: `
+                        es&ltvWhat, Cage&gt
+                      `
+                    });
+                    disc.frontInnerDiv.addEventListener("click", (e) => {discSystem.getLoupe().innerHTML = e.target.innerHTML;});
+
+                    disc = new Disc({
+                      rootDiv: magazine.getBottom(),
+                      innerHTMLForFrontInner: `
+                        vWhat in Unbrakeable cage
+                      `
+                    });
+                    disc.moveY(30 * (5 - 1));
+
+                    disc = new Disc({
+                      rootDiv: magazine.getBottom(),
+                      innerHTMLForFrontInner: `
+                        Runner in StartingGate
+                      `
+                    });
+                    disc.moveY(30 * (9 - 1));
+
+
+
+
+                    magazine.moveX(10);
+                    magazine.moveY(30);
+//                    disc.moveY(200);
+                    magazine.inflate();
+
+
+//                    discSystem.terrain.style.transform += "rotateX(45deg) rotateZ(-45deg) translateX(500px)"; // from prehistory
+//                    discSystem.terrain.style.transform += "rotateZ(180deg) rotateX(-45deg) translateX(1000px)"; // from prehistory
+                    discSystem.terrain.style.transform += "rotateX(45deg)";
+
+
+                    sail = new Sail({rootDiv: discSystem.getBottom(), captionForFront: `aud`, height: "150px", width: "160px"});
+                    sail.jointDiv.style.transform += "translateZ(1px)";
+                    sail.jointDiv.style.transform += "translateX(" + (unit4Disc * 1.25) + "px)";
+                    let historian;
+                    historian = new Historian({rootDiv: discSystem.getBottom(), dur: (unit * 7.5) + "px", innerHTML: `Au, Cu`});  historian.moveX(unit4Disc * 1.5);
+                    historian = new Historian({rootDiv: discSystem.getBottom(), dur: (unit * 15) + "px", innerHTML: `Au, Cu, Pt`});  historian.moveX(unit4Disc * 1.55);
+
+
+
+                };
+
+                show_1();
+
+            }
+        </script>
+    </body>
+</html>
